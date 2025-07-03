@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-message">Get in Touch with Noah! 🌟</div>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="num1.html" class="nav-link">About Me</a></li>
+            <li><a href="num2.html" class="nav-link">My Studies & Hobbies</a></li>
+            <li><a href="num3.html" class="nav-link">My Favorites</a></li>
+            <li><a href="num4.html" class="nav-link">Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <button id="toggleMode" class="toggle-btn" title="Toggle Light/Dark Mode">
+            <span id="modeIcon">☀️</span>
+        </button>
+
+        <h1 class="title animate-type">Enter Your Information</h1>
+
+        <div class="form-container">
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" id="formName" class="input-field animate-input" placeholder="Your Name">
+                    <span class="error" id="nameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="formEmail" class="input-field animate-input" placeholder="Your Email">
+                    <span class="error" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <textarea
+                        id="messageInput"
+                        placeholder="Enter your text..."
+                        class="input-field animate-input"
+                        rows="4"
+                        maxlength="200"
+                        oninput="updateCharCount()"></textarea>
+                    
+                    <progress id="charProgress" class="progress-counter" max="200" value="0"></progress>
+                    <span id="charCounter">0 / 200 characters</span>
+                    
+                    <span class="error" id="messageError"></span>
+                </div>
+
+                <h3>Purpose?</h3>
+                <div class="form-group">
+                    <label><input type="radio" name="love" value="Love me"> Love me</label>
+                    <label><input type="radio" name="love" value="Really love me"> Really love me</label>
+                    <label><input type="radio" name="love" value="OFC love me"> OFC love me</label>
+                </div>
+
+                <button type="submit" class="submit-btn glow-btn">Submit</button>
+                <button type="reset" class="reset-btn glow-btn">Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

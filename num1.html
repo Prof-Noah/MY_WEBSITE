@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Noah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-message">Discover More About Noah! 🌟</div>
+    
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="num1.html" class="nav-link">About Me</a></li>
+            <li><a href="num2.html" class="nav-link">My Studies & Hobbies</a></li>
+            <li><a href="num3.html" class="nav-link">My Favorites</a></li>
+            <li><a href="num4.html" class="nav-link">Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <button id="toggleMode" class="toggle-btn" title="Toggle Light/Dark Mode">
+            <span id="modeIcon">☀️</span>
+        </button>
+
+        <h1 class="title animate-type">Who I Am?</h1>
+
+        <section class="animate-fade">
+            <h2>Random Motivational Quote</h2>
+            <blockquote id="quote" class="quote"></blockquote>
+            <button class="glow-btn" onclick="generateQuote()">New Quote</button>
+        </section>
+
+        <section class="animate-fade">
+            <h2>Educational Background:</h2>
+            <ol>
+                <li>Know C#, HTML, and some CSS commands.</li>
+                <li>Currently learning object-oriented programming.</li>
+                <li>Studied the keys to scientific research.</li>
+            </ol>
+        </section>
+
+        <section class="animate-fade">
+            <h2>Future Goals:</h2>
+            <ul type="square">
+                <li>Get a scholarship in Germany</li>
+                <li>Create a software company</li>
+                <li>To get married</li>
+            </ul>
+        </section>
+
+        <section class="animate-fade">
+            <h2>Reason for Choosing Current Major:</h2>
+            <ul>
+                <li>My love and passion for programming and coding</li>
+                <li>Create my future company</li>
+                <li>It's okay to look for some money.</li>
+            </ul>
+        </section>
+
+        <section class="animate-fade">
+            <h2>More About Me</h2>
+            <button class="glow-btn" onclick="toggleExtraInfo()">Show/Hide Extra Info</button>
+            <div id="extraInfo" style="display: none;">
+                <p><strong>Hobbies:</strong> I love playing chess, running, and listening to the Holy Quran.</p>
+                <p><strong>Goals:</strong> I aim to become a successful software engineer and inspire others.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

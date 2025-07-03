@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Studies and Hobbies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-message">Explore Noah's Hobbies! 🌟</div>
+    
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="num1.html" class="nav-link">About Me</a></li>
+            <li><a href="num2.html" class="nav-link">My Studies & Hobbies</a></li>
+            <li><a href="num3.html" class="nav-link">My Favorites</a></li>
+            <li><a href="num4.html" class="nav-link">Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <button id="toggleMode" class="toggle-btn" title="Toggle Light/Dark Mode">
+            <span id="modeIcon">☀️</span>
+        </button>
+
+        <h1 class="title animate-type">My Studies and Hobbies</h1>
+
+        <section class="animate-fade">
+            <h2>Courses I Enjoy</h2>
+            <label for="courseFilter">Filter by Category: </label>
+            <select id="courseFilter" onchange="filterCourses()">
+                <option value="all">All</option>
+                <option value="programming">Programming</option>
+                <option value="design">Design</option>
+                <option value="math">Math</option>
+            </select>
+            <table class="styled-table" id="courseTable">
+                <tr>
+                    <th>Course</th>
+                    <th>What I Like About It</th>
+                    <th>Favorite Topic</th>
+                    <th>Category</th>
+                </tr>
+                <tr data-category="programming">
+                    <td>OOP</td>
+                    <td>Coding</td>
+                    <td>Methods & Arrays</td>
+                    <td>Programming</td>
+                </tr>
+                <tr data-category="design">
+                    <td>Web</td>
+                    <td>Designing</td>
+                    <td>CSS Design</td>
+                    <td>Design</td>
+                </tr>
+                <tr data-category="math">
+                    <td>Math 2</td>
+                    <td>Logical Thinking</td>
+                    <td>Terminals</td>
+                    <td>Math</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="animate-fade">
+            <h2>My Hobbies</h2>
+            <ol class="hobbies-list">
+                <li class="hobby-item">
+                    Sports: Karate, Football, and Running
+                    <img src="C:\Users\moham\OneDrive\Desktop\tasks\DR-muhammed fouad\download (4).jpeg" alt="Sports" class="hobby-img">
+                    <p class="hobby-desc">I enjoy staying active and competitive!</p>
+                </li>
+                <li class="hobby-item">
+                    Music: No music, but Holy Quran – Alhamdulillah
+                    <img src="C:\Users\moham\OneDrive\Desktop\tasks\DR-muhammed fouad\download (5).jpeg" alt="Quran" class="hobby-img">
+                    <p class="hobby-desc">Listening to the Quran brings me peace.</p>
+                </li>
+                <li class="hobby-item">
+                    Games: Chess, Domino, Screw, etc.
+                    <img src="C:\Users\moham\OneDrive\Desktop\tasks\DR-muhammed fouad\bupg(6).jpeg" alt="Games" class="hobby-img">
+                    <p class="hobby-desc">I love strategic games that challenge my mind.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="animate-fade">
+            <h2>Learning Goal Progress</h2>
+            <p>Goal: Learn JavaScript in 30 days</p>
+            <progress id="progressBar" value="0" max="30"></progress>
+            <button class="glow-btn" onclick="updateProgress()">Mark Day as Done</button>
+            <p>Days Completed: <span id="daysCompleted">0</span>/30</p>
+        </section>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
