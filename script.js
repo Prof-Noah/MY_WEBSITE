@@ -14,14 +14,12 @@ window.updateCharCount = function () {
     charProgress.value = length;
     charCounter.textContent = `${length} / 200 characters`;
 
-    // Save text to localStorage
     localStorage.setItem("messageInput", textarea.value);
 };
 
 document.addEventListener("DOMContentLoaded", function () {
     // Welcome Message Logic (index.html)
     const welcomeMessage = document.getElementById('welcomeMessage');
-    const greeting = document.getElementById('greeting');
     const userNameInput = document.getElementById('userName');
 
     window.welcomeUser = function (event) {
@@ -45,21 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (hour < 17) greetingText = 'Good Afternoon';
         else greetingText = 'Good Evening';
 
-        const storedName = localStorage.getItem('userName');
-        if (storedName && storedName === name) {
-            welcomeMessage.textContent = `Welcome back, ${name}! ${greetingText}! 🌟`;
-        } else {
-            welcomeMessage.textContent = `Welcome, ${name}! ${greetingText}! 🌟`;
-        }
+        welcomeMessage.textContent = `Welcome, ${name}! ${greetingText}! 🌟`;
         welcomeMessage.classList.add('show');
-        if (greeting) {
-            greeting.textContent = `Hey there, my name is ${name}, a student at the ${greetingText} Faculty of Computers and Information. I'm interested in forming new social and professional relationships and meeting new friends.`;
-        }
     }
 
+    // Load welcome message only on manual submission
     const storedName = localStorage.getItem('userName');
-    if (storedName && welcomeMessage) {
-        displayWelcomeMessage(storedName);
+    if (welcomeMessage) {
+        welcomeMessage.classList.remove('show');
+        welcomeMessage.textContent = '';
+        userNameInput.value = '';
+        userNameInput.focus();
     }
 
     // Dark Mode Toggle
@@ -72,24 +66,21 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('darkMode', isDark);
             modeIcon.textContent = isDark ? '🌙' : '☀️';
             toggleButton.classList.add('toggle-click');
+            setTimeout(() => toggleButton.classList.remove('toggle-click'), 500);
         });
     }
 
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
-        if (modeIcon) {
-            modeIcon.textContent = '🌙';
-        }
+        if (modeIcon) modeIcon.textContent = '🌙';
     }
 
-    // Smooth Scroll for Nav Links
+    // Navigation Links (All pages)
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const href = this.getAttribute('href');
-            setTimeout(() => {
-                window.location.href = href;
-            }, 300);
+            window.location.href = href;
         });
     });
 
@@ -100,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "Believe you can and you're halfway there.",
         "Hard work beats talent when talent doesn’t work hard.",
         "The only way to do great work is to love what you do."
-    
     ];
 
     window.generateQuote = function () {
@@ -111,18 +101,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    if (document.getElementById('quote')) {
-        generateQuote();
-    }
+    if (document.getElementById('quote')) generateQuote();
 
     // Show/Hide Extra Info (num1.html)
     window.toggleExtraInfo = function () {
         const extraInfo = document.getElementById('extraInfo');
-        if (extraInfo.style.display === 'none') {
-            extraInfo.style.display = 'block';
-        } else {
-            extraInfo.style.display = 'none';
-        }
+        if (extraInfo) extraInfo.style.display = extraInfo.style.display === 'none' ? 'block' : 'none';
     };
 
     // Table Filtering (num2.html)
@@ -131,11 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const rows = document.querySelectorAll('#courseTable tr[data-category]');
         rows.forEach(row => {
             const category = row.getAttribute('data-category');
-            if (filter === 'all' || category === filter) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            row.style.display = (filter === 'all' || category === filter) ? '' : 'none';
         });
     };
 
@@ -147,6 +127,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (progressBar && daysCompletedSpan) {
         progressBar.value = daysCompleted;
         daysCompletedSpan.textContent = daysCompleted;
+        if (daysCompleted >= 30) {
+            localStorage.setItem('daysCompleted', 0); // Reset if completed
+            progressBar.value = 0;
+            daysCompletedSpan.textContent = 0;
+            alert('Progress has been reset because it reached 30 days!');
+        }
     }
 
     window.updateProgress = function () {
@@ -163,6 +149,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    // Reset Progress Button (num2.html)
+    window.resetProgress = function () {
+        daysCompleted = 0;
+        localStorage.setItem('daysCompleted', daysCompleted);
+        progressBar.value = daysCompleted;
+        daysCompletedSpan.textContent = daysCompleted;
+        alert('Progress has been reset to 0 days!');
+    };
+
     // Load saved text on page load
     const savedText = localStorage.getItem("messageInput") || "";
     const textarea = document.getElementById("messageInput");
@@ -177,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = document.getElementById('formName').value.trim();
         const email = document.getElementById('formEmail').value.trim();
         const message = document.getElementById('messageInput').value.trim();
-        const purpose = form.querySelector('input[name="love"]:checked')?.value;
+        const purpose = form.querySelector('input[name="purpose"]:checked')?.value;
 
         const nameError = document.getElementById('nameError');
         const emailError = document.getElementById('emailError');
@@ -212,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert(`Thank you, ${name}! Your message has been received.\nPurpose: ${purpose}`);
             form.reset();
             updateCharCount();
+            localStorage.removeItem('messageInput');
         }
     };
 });
